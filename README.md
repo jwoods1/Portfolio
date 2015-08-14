@@ -70,7 +70,8 @@ Master
 
 Communicate New Deployments
 ------------------
-	Before any deployments to staging or production server check with team members to verify that you can push. This will prevent any confilcts and potential failures. 
+
+Before any deployments to staging or production server check with team members to verify that you can push. This will prevent any confilcts and potential failures. 
 
 
 
