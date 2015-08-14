@@ -34,7 +34,7 @@ Stage
 
 7. Push to stage server
 	a. $git push stage stage
-	b. Test at http://192.241.231.237/stage/
+	b. Test at http://45.55.1.187/
 
 
 
