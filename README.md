@@ -2,55 +2,76 @@
 # Portfolio
 Jason Woods Portfolio
 
-A Markdown NSAttributedString Parser
+Deployment Plan
 ====================================
 
-This is a Markdown => NSAttributedString parser built on top of a flex parser. It takes an NSString
-and returns an NSAttributedString with markdown tags replaced by CoreText formatting attributes.
+This plan is for deploying to both Stage and Production enviroment.
 
-Adding it to your Project
+Stage
 -------------------------
 
-1. Drag all of the files from the src/ directory into your project.
-2. Import NSAttributedStringMarkdownParser.h in your project.
-3. Create an instance of the parser object and pass it the string you wish to parse.
-4. Plug the resulting NSAttributedString into your favorite NSAttributedString label implementation.
+1. $git checkout stage
+	a. This will checkout to the stage branch from master branch.
 
-NSAttributedString Labels
+2. $git pull origin stage
+	a. Pulls the latest from github master branch.
+	b. Resolve any conflicts
+		1. After resolve need to commit changes.
+			a. $git add .
+			b. $git commit -am 'Merge message'
+			c. $git pull origin master'
+
+3. $git merge master branch
+	a. Resolve conflicts (see 2.b.1)
+
+4. Test locally 
+
+5. $git push origin stage
+
+6. Tag Release 
+	a. git tag -a v.1.X.RC -m'Feature that is changing'
+	b. git push origin --tags
+
+7. Push to stage server
+	a. $git push stage stage
+	b. Test at http://192.241.231.237/stage/
+
+
+
+Master
 -------------------------
 
-Nimbus: https://github.com/jverkoey/nimbus
-TTTAttributedLabel: https://github.com/mattt/TTTAttributedLabel
+1. $git checkout master
+	a. This will checkout to the stage branch from stage branch.
 
-Supported Features
+2. $git pull origin master
+	a. Pulls the latest from github master branch.
+	b. Resolve any conflicts
+		1. After resolve need to commit changes.
+			a. $git add .
+			b. $git commit -am 'Merge message'
+			c. $git pull origin master'
+
+3. $git merge stage branch
+	a. Resolve conflicts (see 2.b.1)
+
+4. Test locally 
+
+5. $git push origin master
+
+6. Tag Release 
+	a. git tag -a v.1.X.X -m'Feature that is changing'
+	b. git push origin --tags
+
+7. Push to Production server
+	a. $git push prodServer master
+	b. Check at http://192.241.231.237/
+
+
+Communicate New Deployments
 ------------------
+	Before any deployments to staging or production server check with team members to verify that you can push. This will prevent any confilcts and potential failures. 
 
-    *italics*
-    **bold**
-    ***bold italic***
-    ~~strikethrough~~
-    
-    # Header 1
-    ## Header 2
-    ### Header 3
-    #### Header 4
-    ##### Header 5
-    ###### Header 6
-    
-    Header 1
-    ========
 
-    Header 2
-    --------
-    
-    http://google.com urls
-    [Text] (http://google.com "alt text") urls
 
-Example
--------
 
-    NSAttributedStringMarkdownParser* parser = [[NSAttributedStringMarkdownParser alloc] init];
-    NSAttributedString* string = [parser attributedStringFromMarkdownString:
-                                  @"This is __rad__."];
-
-See the Catalog application included with the project for more examples.
